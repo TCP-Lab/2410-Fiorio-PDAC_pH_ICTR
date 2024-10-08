@@ -1,8 +1,9 @@
 # Input data
+!data/
 data/*
 !data/in/
 data/in/*
-!data/out
+!data/out/
 data/out/*
 
 # History files
