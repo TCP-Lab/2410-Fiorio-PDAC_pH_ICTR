@@ -1,0 +1,70 @@
+================
+ FGFR2 isoforms
+================
+
+FGFR2 esiste in molteplici isoforme (da splicing alternativo)
+
+in particolare
+- in condizioni fisiologiche l'isoforma b (FGFR2IIIb) è espressa a livello di epitelio
+- in condizioni fisiologiche l'isoforma c (FGFR2IIIc) è espressa a livello di stromale/mesenchimale
+- l'espressione dell'isoforma c a livello epiteliale promuove carcinogenesi nel PDAC
+
+sarebbe interessante rianalizzare i dati di Seq a isoform-level
+
+vanessa.mancini@uniroma1.it
+
+--------------------------------------------------------------------------------
+
+https://en.wikipedia.org/wiki/Fibroblast_growth_factor_receptor_2
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3644028/
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3349828/
+
+--------------------------------------------------------------------------------
+
+https://www.uniprot.org/uniprotkb/P21802/entry#sequences
+
+P21802 · FGFR2_HUMAN
+
+Sequence & Isoforms:
+
+P21802-1
+Synonyms
+BEK, FGFR2IIIc
+
+P21802-3
+Synonyms
+BFR-1, FGFR2IIIb, KGFR
+
+--------------------------------------------------------------------------------
+
+https://www.ensembl.org/Homo_sapiens/Gene/Splice?db=core;g=ENSG00000066468;r=10:121478332-121598458
+Gene: FGFR2 ENSG00000066468
+
+--------------------------------------------------------------------------------
+
+# FGFR2IIIc #
+
+https://www.ensembl.org/Homo_sapiens/Transcript/Summary?db=core;g=ENSG00000066468;r=10:121478332-121598458;t=ENST00000358487
+
+ENST00000358487.10
+FGFR2-206
+ENSP00000351276.6
+CCDS31298
+P21802-1
+NM_000141.5	
+
+
+--------------------------------------------------------------------------------
+
+# FGFR2IIIb #
+
+https://www.ensembl.org/Homo_sapiens/Transcript/Summary?db=core;g=ENSG00000066468;r=10:121478332-121598458;t=ENST00000457416
+
+ENST00000457416.7
+FGFR2-215
+822aa
+ENSP00000410294.2	
+CCDS7620
+P21802-3
+NM_022970.4
+
