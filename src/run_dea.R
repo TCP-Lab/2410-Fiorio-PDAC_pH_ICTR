@@ -61,7 +61,7 @@ load_data <- function(
     )
     sample_metadata <- sample_metadata %>% column_to_rownames("file_id")
 
-    # Filter out batched samples (Replicate 1)
+    # Filter out batched samples
     old_cols <- ncol(data)
     data <- data %>% select(! c("4-days-pH-6_6-7_5", "pH-selected-17"))
     sample_metadata <- sample_metadata %>% filter(row.names(sample_metadata) %in% colnames(data))
