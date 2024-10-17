@@ -41,11 +41,11 @@ load_data <- function(data_path,
   )
   sample_metadata <- sample_metadata %>% column_to_rownames("file_id")
   
-  # # Filter out batched samples
-  # old_cols <- ncol(data)
-  # data <- data %>% select(! c("4-days-pH-6_6-7_5", "pH-selected-17"))
-  # sample_metadata <- sample_metadata %>% filter(row.names(sample_metadata) %in% colnames(data))
-  # cat(paste0("Deleted ", old_cols - ncol(data), " samples!\n"))
+  # Filter out batched samples
+  old_cols <- ncol(data)
+  data <- data %>% select(! c("4-days-pH-6_6-7_5", "pH-selected-17"))
+  sample_metadata <- sample_metadata %>% filter(row.names(sample_metadata) %in% colnames(data))
+  cat(paste0("Deleted ", old_cols - ncol(data), " samples!\n"))
   
   list(
     counts = data,
@@ -56,13 +56,13 @@ load_data <- function(data_path,
   )
 }
 
-# TPMs
-gene_data <- load_data(data_path = "./data/in/pH_CountMatrix_genes_TPM.tsv")
-isoform_data <- load_data(data_path = "./data/in/pH_CountMatrix_isoforms_TPM.tsv")
+# # TPMs
+# gene_data <- load_data(data_path = "./data/in/pH_CountMatrix_genes_TPM.tsv")
+# isoform_data <- load_data(data_path = "./data/in/pH_CountMatrix_isoforms_TPM.tsv")
 
-# # Expected Counts
-# gene_data <- load_data(data_path = "./data/in/pH_CountMatrix_genes_expected_count.tsv")
-# isoform_data <- load_data(data_path = "./data/in/pH_CountMatrix_isoforms_expected_count.tsv")
+# Expected Counts
+gene_data <- load_data(data_path = "./data/in/pH_CountMatrix_genes_expected_count.tsv")
+isoform_data <- load_data(data_path = "./data/in/pH_CountMatrix_isoforms_expected_count.tsv")
 
 # --- Count check --------------------------------------------------------------
 
