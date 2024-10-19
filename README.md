@@ -92,10 +92,12 @@ by the `UniProt Match` column (both of them being _gold_ protein coding biotypes
 > [Ensembl `Gene` Tab](https://www.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=ENSG00000066468;r=10:121478332-121598458) >
 > `Summary` > `Splice variants` > `Basic Gene Annotations from GENCODE 47` >
 > _left click on a transcript_ > `Zoom on feature`. Alternatively, you can directly
-> select the Ensembl `Location` Tab > `Region in detail` menu item. Here, transcripts
-> are drawn as boxes (exons) and lines connecting the boxes (introns). Filled boxes
-> represent coding sequence and unfilled boxes (or portions of boxes) represent
-> UnTranslated Regions (UTR).
+> select the Ensembl `Location` Tab > `Region in detail` menu item. In the _Region
+> Image_ pane, transcripts are drawn as boxes (exons) and lines connecting the boxes
+> (introns). Filled boxes represent coding sequence and unfilled boxes (or portions
+> of boxes) represent UnTranslated Regions (UTR). Here, tracks above the blue bar
+> (_Contigs_) are on the forward strand of the chromosome, and tracks under the blue
+> bar are on the reverse strand.
 
 ![Full transcripts](/figs/Human_10121478334_121598458_full_trimmed.png "Full transcripts")
 ![Zoom on swapped exons](/figs/Human_10121513723_121521615_zoom_trimmed.png "Zoom on swapped exons")
