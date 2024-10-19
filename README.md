@@ -50,9 +50,10 @@ Of these, only 8 are _golden_ genes.
 > [!TIP]
 > __The Ensembl/Havana merge:__ Species which have both HAVANA and Ensembl gene
 > annotation (i.e., Human, Mouse, Rat, and Zebrafish) undergo a merge of the two
-> sets of gene models. A merged (or ___golden___) gene indicates that annotation
-> was provided by both Ensembl and HAVANA. Where a transcript model is annotated
-> only by Ensembl or HAVANA, it is displayed as an unmerged (or ___red___) model.
+> sets of gene models. A merged (or ___golden___) protein-coding gene/transcript
+> indicates that annotation was provided by both Ensembl and HAVANA. Where a
+> coding transcript model is annotated only by Ensembl or HAVANA, it is displayed
+> as an unmerged (or ___red___) model. Non-coding transcripts are in blue.
 >
 >__References__
 > - [Gene annotation in Ensembl](https://www.ensembl.org/info/genome/genebuild/index.html)
