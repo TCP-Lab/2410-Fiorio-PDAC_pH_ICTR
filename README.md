@@ -8,18 +8,25 @@ literature that
 - under physiological conditions, the _isoform b_ (___FGFR2IIIb___) is typically
 	expressed at epithelium level, while the _isoform c_ (___FGFR2IIIc___) is
 	usually found at stromal/mesenchymal level;
-- expression of the _c_ isoform at the epithelial level promotes carcinogenesis
-	in pancreatic ductal adenocarcinoma (PDAC).
+- expression of the _c_ isoform at the epithelial level promotes carcinogenesis,
+	 with special reference to pancreatic ductal adenocarcinoma (PDAC).
 
 > __References__
-[PMID 22440254](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3349828/)
-[PMID 23444225](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3644028/)
+> - [PMID 20094046](https://pubmed.ncbi.nlm.nih.gov/20094046/)
+> - [PMID 22440254](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3349828/)
+> - [PMID 23444225](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3644028/)
 
 ## Aim
 It would be interesting to re-analyze at isoform-level the RNA-Seq data set from
 our 2022 study about epithelial–to-mesenchymal transition (EMT) effects induced
-by acute and prolonged exposure of PANC-1 cell line to acidic pH environment:
+by acute or prolonged exposure of PANC-1 cell line to acidic pH environment:
+ 
 > Audero, M.M. _et al_. __Acidic Growth Conditions Promote Epithelial-to-Mesenchymal Transition to Select More Aggressive PDAC Cell Phenotypes In Vitro__. _Cancers_ 2023, 15, 2572. https://doi.org/10.3390/cancers15092572
+> ([PMID 37174038](https://pmc.ncbi.nlm.nih.gov/articles/PMC10177299/))
+
+The aim now is to investigate the expression patterns of FGFR2 isoforms in
+PANC-1 cells as an _in vitro_ model for PDAC when a more aggressive phenotype
+is triggered by acidosis.
 
 ## Methods
 ### From Reads to Counts
@@ -27,29 +34,30 @@ The $12 \times 2$ PE FASTQ files from
 [PMID 37174038](https://doi.org/10.3390/cancers15092572)
 went through a standard
 [___x.FASTQ___](https://github.com/TCP-Lab/x.FASTQ)
-pipeline for quality control, trimming, read alignment (by STAR), and transcript
-abundance quantification (by RSEM). _TPM_ and _expected count_ expression
-matrices were eventually assembled for both genes and isoforms, using Ensembl
-ENSG and ENST, respectively, as primary IDs.
+pipeline for quality control, adapter and quality trimming, read alignment (by
+STAR), and transcript abundance quantification (by RSEM). For the last two steps,
+Genome assembly GRCh38 (_hg38_) was used, together with the
+`Homo_sapiens.GRCh38.110.gtf` GTF file for annotation. _TPM_ and _expected count_
+expression matrices were neventually assembled for both genes and isoforms,
+using Ensembl ENSG and ENST, respectively, as primary IDs.
 
 ### Identifying the isoforms of interest
 Searching for human _FGFR2_ gene through the _Ensembl genome browser_
-([ENSG00000066468](https://www.ensembl.org/Homo_sapiens/Gene/Splice?db=core;g=ENSG00000066468;r=10:121478332-121598458), `Summary`, `Show transcript table`)
+([ENSG00000066468](https://www.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=ENSG00000066468;r=10:121478332-121598458) > `Summary` > `Show transcript table`)
 returned 41 possible splice variants, among which 25 protein coding transcripts.
 Of these, only 8 are _golden_ genes.
 
 > [!TIP]
 > __The Ensembl/Havana merge:__ Species which have both HAVANA and Ensembl gene
 > annotation (i.e., Human, Mouse, Rat, and Zebrafish) undergo a merge of the two
-> sets of gene models. A merged, or ___golden___, gene indicates that annotation
+> sets of gene models. A merged (or ___golden___) gene indicates that annotation
 > was provided by both Ensembl and HAVANA. Where a transcript model is annotated
-> only by Ensembl or HAVANA, it will be displayed as an unmerged (___red___)
-> model.
+> only by Ensembl or HAVANA, it is displayed as an unmerged (or ___red___) model.
 >
 >__References__
-[Gene annotation in Ensembl](https://www.ensembl.org/info/genome/genebuild/index.html)
-[The Ensembl and Havana merge](https://www.ensembl.org/info/genome/genebuild/annotation_merge.html)
-[The HAVANA team](https://www.sanger.ac.uk/project/manual-annotation/)
+> - [Gene annotation in Ensembl](https://www.ensembl.org/info/genome/genebuild/index.html)
+> - [The Ensembl and Havana merge](https://www.ensembl.org/info/genome/genebuild/annotation_merge.html)
+> - [The HAVANA team](https://www.sanger.ac.uk/project/manual-annotation/)
 
 Nevertheless, it was not obvious to find which of those ENST IDs corresponded to
 the two isoforms of interest identified by the two "common" names
@@ -58,32 +66,45 @@ ___FGFR2IIIb___ and ___FGFR2IIIc___.
 Thankfully, the __P21802 · FGFR2_HUMAN__ entry from the __UniProt__ database
 features a specific section about protein
 [Sequence & Isoforms](https://www.uniprot.org/uniprotkb/P21802/entry#sequences),
-also reporting names and aliases (synonyms).
-
-Here we found the correspondence between common names and their official
-UniProtKB/Swiss-Prot IDs:
+also reporting all their names and aliases (synonyms). Based on this information,
+the correspondence between the common names of the isoforms and their official
+UniProtKB/Swiss-Prot IDs was found to be as follows:
 - __P21802-1__ (canonical sequence)
 	Synonyms: BEK, __FGFR2IIIc__
 - __P21802-3__
 	Synonyms: BFR-1, __FGFR2IIIb__, KGFR
 
 This in turn allowed the transcripts of interest to be identified in __Ensembl__
-by the `UniProt Match` column (both of them as _gold_ protein coding biotypes).
+by the `UniProt Match` column (both of them being _gold_ protein coding biotypes).
 
-| Common Name | [FGFR2IIIb](https://www.ensembl.org/Homo_sapiens/Transcript/Summary?db=core;g=ENSG00000066468;r=10:121478332-121598458;t=ENST00000457416) | [FGFR2IIIc](https://www.ensembl.org/Homo_sapiens/Transcript/Summary?db=core;g=ENSG00000066468;r=10:121478332-121598458;t=ENST00000358487)|
+| Common Name    | FGFR2IIIb         | FGFR2IIIc          |
 | -------------- | ----------------- | ------------------ |
-| Transcript ID  | ENST00000457416.7 | ENST00000358487.10 |
+| Transcript ID  | [ENST00000457416.7](https://www.ensembl.org/Homo_sapiens/Transcript/Summary?db=core;g=ENSG00000066468;r=10:121478332-121598458;t=ENST00000457416) | [ENST00000358487.10](https://www.ensembl.org/Homo_sapiens/Transcript/Summary?db=core;g=ENSG00000066468;r=10:121478332-121598458;t=ENST00000358487)|
 | Name           | FGFR2-215         | FGFR2-206          |
 | Translation ID | ENSP00000410294.2 | ENSP00000351276.6  |
 | CCDS           | CCDS7620          | CCDS31298          |
 | UniProt Match  | P21802-3          | P21802-1           |
-| RefSeq Match   | NM_022970.4       | NM_000141.5	      |
+| RefSeq Match   | NM_022970.4       | NM_000141.5        |
 
-`Summary` > `Splice variants` > `Basic Gene Annotations from GENCODE 47` > `Zoom on feature`
+> [!TIP]
+> Get a schematic representations of exon-intron structure for the isoforms of
+> interest following this path:
+> [Ensembl `Gene` Tab](https://www.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=ENSG00000066468;r=10:121478332-121598458) >
+> `Summary` > `Splice variants` > `Basic Gene Annotations from GENCODE 47` >
+> _left click on a transcript_ > `Zoom on feature`. Alternatively, you can directly
+> select the Ensembl `Location` Tab > `Region in detail` menu item. Here, transcripts
+> are drawn as boxes (exons) and lines connecting the boxes (introns). Filled boxes
+> represent coding sequence and unfilled boxes (or portions of boxes) represent
+> UnTranslated Regions (UTR).
+
 ![Full transcripts](/figs/Human_10121478334_121598458_full_trimmed.png "Full transcripts")
 ![Zoom on swapped exons](/figs/Human_10121513723_121521615_zoom_trimmed.png "Zoom on swapped exons")
 
-`Summary` > `Transcript comparison` > `Select transcripts` > `Download sequence`
+
+`Summary` > `Transcript comparison` > `Select transcripts` > `Download sequence` >
+choose what to download among: the sequences of the mature (spliced) transcripts (as cDNA),
+just the coding sequences (CDS), 5' UTRs, 3' UTRs, the list of exons, the list of introns,
+the entire genomic sequences
 
 
 ### Kerblam! Workflows
@@ -191,6 +212,6 @@ TPMs) in every sample, I lean toward the first hypothesis and do not think that
 further increasing the sequencing depth would bring any benefit.
 
 > __References__
-[DESeq2 vignette](https://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#pre-filtering)
-[reddit: TPM counts cut off?](https://www.reddit.com/r/bioinformatics/comments/1dn19gn/tpm_counts_cut_off/?rdt=64484)
+> - [DESeq2 vignette](https://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#pre-filtering)
+> - [reddit: TPM counts cut off?](https://www.reddit.com/r/bioinformatics/comments/1dn19gn/tpm_counts_cut_off/?rdt=64484)
 
