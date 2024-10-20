@@ -106,8 +106,8 @@ by the `UniProt Match` column.
 > chromosome, while tracks under the blue bar are on the reverse strand.
 
 > [!NOTE]
-> The FGFR2 gene lies on the reverse strand of chromosome 10, so its exo
-> sequence must be read right to left.
+> The FGFR2 gene lies on the reverse strand of chromosome 10, so its exon
+> sequence must be read __right to left__.
 
 ![Full transcripts](/figs/Human_10121478334_121598458_full_trimmed.png "Full transcripts")
 ![Zoom on swapped exons](/figs/Human_10121513723_121521615_zoom_trimmed.png "Zoom on swapped exons")
