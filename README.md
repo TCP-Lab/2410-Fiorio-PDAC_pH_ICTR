@@ -42,13 +42,33 @@ STAR), and transcript abundance quantification (by RSEM). For the last two
 steps, Genome assembly GRCh38 (_hg38_) was used, together with gene annotations
 from `Homo_sapiens.GRCh38.110.gtf` GTF file. _TPM_ and _expected count_
 expression matrices were eventually assembled for both genes and isoforms,
-using Ensembl ENSG and ENST, respectively, as primary IDs.
+using Ensembl ENSG and ENST, respectively, as primary IDs. Expression data were
+then copied in the `./data/in` project's subfolder with the following names:
+```
+pH_CountMatrix_genes_expected_count.tsv
+pH_CountMatrix_genes_TPM.tsv
+pH_CountMatrix_isoforms_expected_count.tsv
+pH_CountMatrix_isoforms_TPM.tsv
+```
+together with a `sample_metadata.tsv` file, created for the purpose along the
+lines of the sample metadata tables used on ENA database.
 
 ### Identifying the isoforms of interest
-Searching for human _FGFR2_ gene through the _Ensembl genome browser_
+First, a list of all transcripts associated with the ENSG000066468 gene
+(_FGFR2_) was obtained from the local copy of the GTF file (in order to be 100%
+consistent with the annotation version used for aligment and quantification) by
+using the following Bash line
+```bash
+cat Homo_sapiens.GRCh38.110.gtf | grep -oP "ENSG00000066468.*ENST.{11}" | grep -oP "ENST.*" | uniq > ~/all_FGFR2_transcripts.txt
+```
+The resulting list of 41 transcripts was then copied in the `./data/in`
+project's subfolder.
+
+Accordingly, searching for human _FGFR2_ gene through the _Ensembl genome
+browser_
 ([ENSG00000066468](https://www.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=ENSG00000066468;r=10:121478332-121598458) > `Summary` > `Show transcript table`)
-returned 41 possible splice variants, among which 25 protein-coding transcripts.
-Of these, only 8 were _golden_ genes.
+returned the same 41 possible splice variants, among which 25 protein-coding
+transcripts. Of these, only 8 were _golden_ genes.
 
 > [!TIP]
 > __Gene/transcript color code:__ Species with both HAVANA and Ensembl gene
