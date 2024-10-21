@@ -1,10 +1,11 @@
-# Input data
+# Input/Output data and References
 !data/
 data/*
 !data/in/
 data/in/*
 !data/out/
 data/out/*
+refs/
 
 # History files
 .Rhistory
